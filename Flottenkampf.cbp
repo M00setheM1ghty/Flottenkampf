@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Aktionen.h" />
+		<Unit filename="include/DefaultSchiffWerte.h" />
+		<Unit filename="include/Jaeger.h" />
+		<Unit filename="include/Kreuzer.h" />
+		<Unit filename="include/Schiff.h" />
+		<Unit filename="include/Spiellogik.h" />
+		<Unit filename="include/Zerstoerer.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Aktionen.cpp" />
+		<Unit filename="src/Jaeger.cpp" />
+		<Unit filename="src/Kreuzer.cpp" />
+		<Unit filename="src/Schiff.cpp" />
+		<Unit filename="src/Spiellogik.cpp" />
+		<Unit filename="src/Zerstoerer.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
