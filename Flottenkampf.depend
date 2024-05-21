@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1716281623 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\main.cpp
+	<iostream>
+	<assert.h>
+
+1716284239 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\src\schiff.cpp
+	"Schiff.h"
+
+1716293656 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\schiff.h
+
+1716292730 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\src\jaeger.cpp
+	"Jaeger.h"
+
+1716293271 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\jaeger.h
+	"Schiff.h"
+

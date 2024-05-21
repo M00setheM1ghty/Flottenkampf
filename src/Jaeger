@@ -1,0 +1,11 @@
+#include "Jaeger.h"
+
+Jaeger::Jaeger()
+{
+    //ctor
+}
+
+Jaeger::~Jaeger()
+{
+    //dtor
+}
