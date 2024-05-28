@@ -141,6 +141,75 @@ void Spiellogik::chooseShipsForTeams() {
     }
 }
 
+////////////////// HELPER FUNCTIONS SPIEL ATTACK CYCLE
+void Spiellogik::executeRound()
+{
+    chooseAttackerAndTarget(TeamA);
+    chooseAttackerAndTarget(TeamB);
+}
+
+void Spiellogik::chooseAttackerAndTarget(teams team)
+{
+    std::string attackerShip; std::string shipToAttack; int inputAttackerShip; int inputShipToAttack;
+    do {
+        std::cout << "Wähle eines deiner Schiffe für die Attacke (0,1,2): " << std::endl;
+        if(team == TeamA)
+        {
+            printTeams(TeamA);
+        }
+        if(team == TeamB)
+        {
+            printTeams(TeamB);
+        }
+        std::getline(std::cin, attackerShip); std::cout << std::endl;
+        try {
+            inputAttackerShip = std::stoi(attackerShip);
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Ungültige Eingabe. Bitte eine Zahl eingeben." << std::endl;
+            inputAttackerShip = -1; // Reset input
+        } catch (const std::out_of_range& e) {
+            std::cout << "Zahl außerhalb des gültigen Bereichs. Bitte 0, 1 oder 2 eingeben." << std::endl;
+            inputAttackerShip = -1; // Reset input
+        }
+    }while(!checkChosenShipInput(inputAttackerShip));
+
+    do {
+        std::cout << "Wähle eine gegnerisches Schiff um es anzugreifen (0,1,2): " << std::endl;
+        if(team == TeamA)
+        {
+            printTeams(TeamB);
+        }
+        if(team == TeamB)
+        {
+            printTeams(TeamA);
+        }
+        std::getline(std::cin, shipToAttack); std::cout << std::endl;
+        try {
+            inputShipToAttack = std::stoi(shipToAttack);
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Ungültige Eingabe. Bitte eine Zahl eingeben." << std::endl;
+            inputShipToAttack = -1; // Reset input
+        } catch (const std::out_of_range& e) {
+            std::cout << "Zahl außerhalb des gültigen Bereichs. Bitte 0, 1 oder 2 eingeben." << std::endl;
+            inputShipToAttack = -1; // Reset input
+        }
+    } while(!checkChosenShipInput(inputShipToAttack));
+
+    currentShipsForCombat={inputAttackerShip,inputShipToAttack};
+}
+
+int Spiellogik::checkChosenShipInput(int input)
+{
+    if(input < 0 || input > 2)
+    {
+        std::cout << "Auswahl muss 0,1 oder 2 sein!" << std::endl;
+        return 0;
+    }
+    return 1;
+}
+
+
+////////////////// PRINT FUNCTIONS
 void Spiellogik::printShips()
 {
     for(Schiff* ship : shipsTeamA)
@@ -165,24 +234,24 @@ void Spiellogik::printChosenShips()
     }
 }
 
-void Spiellogik::printTeams()
+void Spiellogik::printTeams(teams team)
 {
     //get ship types for printing
     int amountA=0; int amountB=0;
-    std::array<std::string,MAX_TEAM_SIZE> TeamA;
-    std::array<std::string,MAX_TEAM_SIZE> TeamB;
+    std::array<std::string,MAX_TEAM_SIZE> TeamA_names;
+    std::array<std::string,MAX_TEAM_SIZE> TeamB_names;
     for(Schiff* ship : shipsTeamA)
     {
         switch(ship->type_)
         {
         case 0:
-            TeamA[amountA]="JAEGER";
+            TeamA_names[amountA]="JAEGER";
             break;
         case 1:
-            TeamA[amountA]="ZERSTOERER";
+            TeamA_names[amountA]="ZERSTOERER";
             break;
         case 2:
-            TeamA[amountA]="KREUZER";
+            TeamA_names[amountA]="KREUZER";
             break;
         default:
             std::cout << "Typ existiert nicht!";
@@ -195,36 +264,44 @@ void Spiellogik::printTeams()
         switch(ship->type_)
         {
         case 0:
-            TeamB[amountB]="JAEGER";
+            TeamB_names[amountB]="JAEGER";
             break;
         case 1:
-            TeamB[amountB]="ZERSTOERER";
+            TeamB_names[amountB]="ZERSTOERER";
             break;
         case 2:
-            TeamB[amountB]="KREUZER";
+            TeamB_names[amountB]="KREUZER";
             break;
         default:
             std::cout << "Typ existiert nicht!";
         }
         ++amountB;
     }
-
-    //print team info
-    int counterA = 0;
-    std::cout << "Team A: " << std::endl;
-    for(const std::string& shipName : TeamA)
+    if(team == TeamA)
     {
-        std::cout << counterA << ": " << shipName << " / ";
-        ++counterA;
+        //print team info
+        int counterA = 0;
+        std::cout << "Team A: " << std::endl;
+        for(const std::string& shipName : TeamA_names)
+        {
+            std::cout << counterA << ": " << shipName << " / ";
+            ++counterA;
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
-
-    int counterB = 0;
-    std::cout << "Team B: " << std::endl;
-    for(const std::string& shipName : TeamB)
+    if(team == TeamB)
     {
-        std::cout << counterB << ": " << shipName << " / ";
-        ++counterB;
+        int counterB = 0;
+        std::cout << "Team B: " << std::endl;
+        for(const std::string& shipName : TeamB_names)
+        {
+            std::cout << counterB << ": " << shipName << " / ";
+            ++counterB;
+        }
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
+
 }
+
+
+

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1716899859 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\main.cpp
+1716907522 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\main.cpp
 	<iostream>
 	<assert.h>
 	<array>
@@ -21,7 +21,7 @@
 1716898727 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\jaeger.h
 	"Schiff.h"
 
-1716888170 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\defaultschiffwerte.h
+1716907025 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\defaultschiffwerte.h
 
 1716295040 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\src\kreuzer.cpp
 	"Kreuzer.h"
@@ -80,10 +80,10 @@
 	<sys/time.h>
 	<unistd.h>
 
-1716899823 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\src\spiellogik.cpp
+1716908296 source:c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\src\spiellogik.cpp
 	"Spiellogik.h"
 
-1716899567 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\spiellogik.h
+1716907532 c:\users\thomas\onedrive - ipcb e.u\desktop\c++ files\flottenkampf\flottenkampf\include\spiellogik.h
 	<array>
 	<string>
 	<iostream>

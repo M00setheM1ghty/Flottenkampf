@@ -16,22 +16,27 @@ class Spiellogik
         Spiellogik();
         ~Spiellogik();
 
-        // game functions
+        // spiel setup functions
         void spielSetup();
         void spielAttackRound();
         schifftyp findShipType(const std::string& input);
         void addShipToTeam(schifftyp shiptype, teams team);
         void chooseShipsForTeams();
         void addShipsToTeams();
+        // attack cycle functions
+        void executeRound();
+        void chooseAttackerAndTarget(teams team);
+        int checkChosenShipInput(int input);
         // print functions
         void printShips();
         void printChosenShips();
-        void printTeams();
+        void printTeams(teams team);
     public:
         std::array<Schiff*,MAX_TEAM_SIZE> shipsTeamA;
         std::array<Schiff*,MAX_TEAM_SIZE> shipsTeamB;
         std::array<schifftyp, MAX_TEAM_SIZE> chosenShipsTeamA;
         std::array<schifftyp, MAX_TEAM_SIZE> chosenShipsTeamB;
+        std::array<int,2> currentShipsForCombat;
         int currentShipAmountTeamA;
         int currentShipAmountTeamB;
 

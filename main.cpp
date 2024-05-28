@@ -19,7 +19,8 @@ int main()
 {
     Spiellogik spiel;
     spiel.spielSetup();
-    spiel.printTeams();
+    spiel.executeRound();
+
 }
 #endif
 
