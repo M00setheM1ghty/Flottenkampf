@@ -6,7 +6,7 @@
 class Zerstoerer : public Schiff
 {
     public:
-        Zerstoerer(int groesse, int huelle, int schaden) : Schiff(groesse, huelle, schaden){};
+        Zerstoerer(int groesse, int huelle, int schaden) : Schiff(groesse, huelle, schaden, ZERSTOERER){};
 
     protected:
 

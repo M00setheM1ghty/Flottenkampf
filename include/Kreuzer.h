@@ -6,7 +6,7 @@
 class Kreuzer : public Schiff
 {
     public:
-        Kreuzer(int groesse, int huelle, int schaden) : Schiff(groesse, huelle, schaden){};
+        Kreuzer(int groesse, int huelle, int schaden) : Schiff(groesse, huelle, schaden, KREUZER){};
 
     protected:
 

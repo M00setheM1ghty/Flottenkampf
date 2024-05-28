@@ -5,6 +5,7 @@
 #include "DefaultSchiffWerte.h"
 #include "Jaeger.h"
 #include "Schiff.h"
+#include "Spiellogik.h"
 
 #define USE_DOCTEST_MAIN 0
 
@@ -16,7 +17,9 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
-
+    Spiellogik spiel;
+    spiel.spielSetup();
+    spiel.printTeams();
 }
 #endif
 
