@@ -1,6 +1,8 @@
 #include <iostream>
 #include <assert.h>
 #include <array>
+#include <cstdlib>
+#include <ctime>
 
 #include "DefaultSchiffWerte.h"
 #include "Jaeger.h"
@@ -17,6 +19,7 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
+
     Spiellogik spiel;
     spiel.spielSetup();
     spiel.executeRound();

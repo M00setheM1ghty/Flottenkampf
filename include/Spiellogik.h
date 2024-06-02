@@ -4,6 +4,8 @@
 #include <array>
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Schiff.h"
 #include "Jaeger.h"
 #include "Kreuzer.h"
@@ -27,6 +29,8 @@ class Spiellogik
         void executeRound();
         void chooseAttackerAndTarget(teams team);
         int checkChosenShipInput(int input);
+        angriffsErfolg determineAttackSuccess(int shipSize);
+        void executeAttack();
         // print functions
         void printShips();
         void printChosenShips();
@@ -36,9 +40,10 @@ class Spiellogik
         std::array<Schiff*,MAX_TEAM_SIZE> shipsTeamB;
         std::array<schifftyp, MAX_TEAM_SIZE> chosenShipsTeamA;
         std::array<schifftyp, MAX_TEAM_SIZE> chosenShipsTeamB;
-        std::array<int,2> currentShipsForCombat;
+        std::array<int,2> currentShipsForCombat; // AttackerShip=0,ShipToAttack=1 -> contains placement of chosen ship in shipsTeam array
         int currentShipAmountTeamA;
         int currentShipAmountTeamB;
+        teams currentAttacker;
 
     protected:
 

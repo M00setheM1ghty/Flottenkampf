@@ -1,13 +1,12 @@
 #include "Spiellogik.h"
 
-
-
 Spiellogik::Spiellogik()
 {
     shipsTeamA.fill(nullptr);
     shipsTeamB.fill(nullptr);
     currentShipAmountTeamA = 0;
     currentShipAmountTeamB = 0;
+    currentShipsForCombat = {-1,-1};
 }
 
 Spiellogik::~Spiellogik()
@@ -196,6 +195,7 @@ void Spiellogik::chooseAttackerAndTarget(teams team)
     } while(!checkChosenShipInput(inputShipToAttack));
 
     currentShipsForCombat={inputAttackerShip,inputShipToAttack};
+    currentAttacker = team;
 }
 
 int Spiellogik::checkChosenShipInput(int input)
@@ -208,8 +208,52 @@ int Spiellogik::checkChosenShipInput(int input)
     return 1;
 }
 
+angriffsErfolg Spiellogik::determineAttackSuccess(int shipSize)
+{
+    int randomNumber = rand()%10 + 1;
+    if (randomNumber < shipSize) {
+        return SUCCESS;
+    } else {
+        return FAILURE;
+    }
+}
+
+void Spiellogik::executeAttack()
+{
+    // first in array: attacker ship; second: ship to be attacked
+    switch(currentAttacker)
+    {
+        //// code for Attack by Team B
+        case TeamA: {
+            Schiff* attackerShip = shipsTeamA[currentShipsForCombat[0]];
+            Schiff* shipToBeAttacked = shipsTeamB[currentShipsForCombat[1]];
+
+            if(determineAttackSuccess(attackerShip->groesse_)) {
+                shipToBeAttacked->huelle_ -= attackerShip->schaden_;
+            }
+            break;
+        }
+        // Code for Attack by Team B
+        case TeamB: {
+            Schiff* attackerShip = shipsTeamB[currentShipsForCombat[0]];
+            Schiff* shipToBeAttacked = shipsTeamA[currentShipsForCombat[1]];
+
+            if(determineAttackSuccess(attackerShip->groesse_)) {
+                shipToBeAttacked->huelle_ -= attackerShip->schaden_;
+            }
+            break;
+        }
+        default:
+            std::cout << "Team not found!" << std::endl;
+            break;
+    }
+}
+
+
+
 
 ////////////////// PRINT FUNCTIONS
+
 void Spiellogik::printShips()
 {
     for(Schiff* ship : shipsTeamA)
