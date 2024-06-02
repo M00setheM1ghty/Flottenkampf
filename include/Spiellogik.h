@@ -17,16 +17,19 @@ class Spiellogik
     public:
         Spiellogik();
         ~Spiellogik();
-
         // spiel setup functions
         void spielSetup();
+        // attack cycle functions
+        void executeRound();
+
+    private:
+        // spiel setup functions
         void spielAttackRound();
         schifftyp findShipType(const std::string& input);
         void addShipToTeam(schifftyp shiptype, teams team);
         void chooseShipsForTeams();
         void addShipsToTeams();
         // attack cycle functions
-        void executeRound();
         void executeGameEnd(teams team);
         void executeAttack();
         void chooseAttackerAndTarget(teams team);
@@ -38,7 +41,10 @@ class Spiellogik
         void printShips();
         void printChosenShips();
         void printTeams(teams team);
+
     public:
+        bool gameTerminator = false;
+    private:
         std::array<Schiff*,MAX_TEAM_SIZE> shipsTeamA;
         std::array<Schiff*,MAX_TEAM_SIZE> shipsTeamB;
         std::array<schifftyp, MAX_TEAM_SIZE> chosenShipsTeamA;
@@ -47,7 +53,7 @@ class Spiellogik
         int currentShipAmountTeamA;
         int currentShipAmountTeamB;
         teams currentAttacker;
-        bool gameTerminator = false;
+
 
     protected:
 
