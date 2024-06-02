@@ -2,6 +2,7 @@
 #define SCHIFF_H
 
 #include "DefaultSchiffWerte.h"
+#include <iostream>
 
 class Schiff
 {
@@ -14,6 +15,9 @@ class Schiff
     public:
         Schiff(int groesse, int huelle, int schaden, schifftyp type_) : groesse_(groesse), huelle_(huelle), schaden_(schaden), type_(type_){};
         virtual ~Schiff();
+        virtual void attack(Schiff* target) = 0;
+        virtual angriffsErfolg determineAttackSuccess(int randomNumber) = 0;
+        virtual int checkShipAbility(int randomNumber) = 0;
     protected:
 
     private:

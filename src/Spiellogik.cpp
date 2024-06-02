@@ -143,8 +143,47 @@ void Spiellogik::chooseShipsForTeams() {
 ////////////////// HELPER FUNCTIONS SPIEL ATTACK CYCLE
 void Spiellogik::executeRound()
 {
+    // TeamA starts
     chooseAttackerAndTarget(TeamA);
+    executeAttack();
+    checkForGameEnd();
+    if(gameTerminator)
+    {
+        executeGameEnd(TeamA);
+        return;
+    }
+    // TeamB goes second
     chooseAttackerAndTarget(TeamB);
+    executeAttack();
+    checkForGameEnd();
+    if(gameTerminator)
+    {
+        executeGameEnd(TeamB);
+        return;
+    }
+}
+
+void Spiellogik::checkForGameEnd()
+{
+    if(currentShipAmountTeamA == 0)
+    {
+        gameTerminator = true;
+    }
+    if(currentShipAmountTeamB == 0)
+    {
+        gameTerminator = true;
+    }
+}
+
+void Spiellogik::executeGameEnd(teams team)
+{
+    if(team == TeamA)
+    {
+        std::cout << "Team A won! Congrats!" << std::endl;
+    }else
+    {
+        std::cout << "Team B won! Lets go!" << std::endl;
+    }
 }
 
 void Spiellogik::chooseAttackerAndTarget(teams team)
@@ -228,9 +267,7 @@ void Spiellogik::executeAttack()
             Schiff* attackerShip = shipsTeamA[currentShipsForCombat[0]];
             Schiff* shipToBeAttacked = shipsTeamB[currentShipsForCombat[1]];
 
-            if(determineAttackSuccess(attackerShip->groesse_)) {
-                shipToBeAttacked->huelle_ -= attackerShip->schaden_;
-            }
+            attackerShip->attack(shipToBeAttacked);
             break;
         }
         // Code for Attack by Team B
@@ -238,9 +275,7 @@ void Spiellogik::executeAttack()
             Schiff* attackerShip = shipsTeamB[currentShipsForCombat[0]];
             Schiff* shipToBeAttacked = shipsTeamA[currentShipsForCombat[1]];
 
-            if(determineAttackSuccess(attackerShip->groesse_)) {
-                shipToBeAttacked->huelle_ -= attackerShip->schaden_;
-            }
+            attackerShip->attack(shipToBeAttacked);
             break;
         }
         default:
@@ -249,6 +284,30 @@ void Spiellogik::executeAttack()
     }
 }
 
+
+void Spiellogik::removeDestroyedShip(int indexShipToDestroy)
+{
+    if(currentAttacker == TeamA)
+    {
+        --currentShipAmountTeamB;
+        shipsTeamB[indexShipToDestroy] = nullptr;
+
+        for (size_t i = indexShipToDestroy + 1; i < shipsTeamB.size(); ++i) {
+            shipsTeamB[i - 1] = shipsTeamB[i];
+            shipsTeamB[i] = nullptr; //Set the last element to nullptr
+        }
+    }
+    if(currentAttacker == TeamB)
+    {
+        --currentShipAmountTeamA;
+        shipsTeamA[indexShipToDestroy] = nullptr;
+
+        for (size_t i = indexShipToDestroy + 1; i < shipsTeamA.size(); ++i) {
+            shipsTeamA[indexShipToDestroy - 1] = shipsTeamA[i];
+            shipsTeamA[indexShipToDestroy] = nullptr;
+        }
+    }
+}
 
 
 

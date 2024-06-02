@@ -19,11 +19,12 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
-
     Spiellogik spiel;
     spiel.spielSetup();
-    spiel.executeRound();
 
+    while(!spiel.gameTerminator){
+        spiel.executeRound();
+    }
 }
 #endif
 

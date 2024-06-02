@@ -27,10 +27,13 @@ class Spiellogik
         void addShipsToTeams();
         // attack cycle functions
         void executeRound();
+        void executeGameEnd(teams team);
+        void executeAttack();
         void chooseAttackerAndTarget(teams team);
         int checkChosenShipInput(int input);
         angriffsErfolg determineAttackSuccess(int shipSize);
-        void executeAttack();
+        void checkForGameEnd();
+        void removeDestroyedShip(int indexShipToDestroy);
         // print functions
         void printShips();
         void printChosenShips();
@@ -44,6 +47,7 @@ class Spiellogik
         int currentShipAmountTeamA;
         int currentShipAmountTeamB;
         teams currentAttacker;
+        bool gameTerminator = false;
 
     protected:
 
