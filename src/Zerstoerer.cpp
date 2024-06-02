@@ -19,10 +19,10 @@ void Zerstoerer::attack(Schiff* target)
 
 angriffsErfolg Zerstoerer::determineAttackSuccess(int randomNumber)
 {
-    return randomNumber < (groesse_-2) ? SUCCESS : FAILURE;
+    return randomNumber < (groesse_+2) ? SUCCESS : FAILURE;
 }
 
 int Zerstoerer::checkShipAbility(int randomNumber)
 {
-    return 0;
+    return 0; // not used but implemented for pure virtual function in schiff.h
 }

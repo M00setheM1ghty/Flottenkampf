@@ -10,7 +10,7 @@ void Kreuzer::attack(Schiff* target)
     int randomNumber = rand() % 10 + 1;
     if (determineAttackSuccess(randomNumber) == SUCCESS)
     {
-        if(checkShipAbility(randomNumber)==1) attack(target);
+        if(checkShipAbility(randomNumber)==1 && target != nullptr) attack(target);
         target->huelle_ -= schaden_;
         std::cout << "Kreuzer trifft und macht" << schaden_ << "schaden!" << std::endl;
     } else {

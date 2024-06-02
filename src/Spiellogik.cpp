@@ -268,6 +268,7 @@ void Spiellogik::executeAttack()
             Schiff* shipToBeAttacked = shipsTeamB[currentShipsForCombat[1]];
 
             attackerShip->attack(shipToBeAttacked);
+            if(shipToBeAttacked->huelle_ <= 0) removeDestroyedShip(currentShipsForCombat[1]);
             break;
         }
         // Code for Attack by Team B
@@ -276,6 +277,7 @@ void Spiellogik::executeAttack()
             Schiff* shipToBeAttacked = shipsTeamA[currentShipsForCombat[1]];
 
             attackerShip->attack(shipToBeAttacked);
+            if(shipToBeAttacked->huelle_ <= 0) removeDestroyedShip(currentShipsForCombat[1]);
             break;
         }
         default:
