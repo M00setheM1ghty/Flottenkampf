@@ -33,7 +33,7 @@ class Spiellogik
         void executeGameEnd(teams team);
         void executeAttack();
         void chooseAttackerAndTarget(teams team);
-        int checkChosenShipInput(int input);
+        int checkChosenShipInput(int input, teams team);
         angriffsErfolg determineAttackSuccess(int shipSize);
         void checkForGameEnd();
         void removeDestroyedShip(int indexShipToDestroy);

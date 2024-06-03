@@ -189,6 +189,11 @@ void Spiellogik::executeGameEnd(teams team)
 void Spiellogik::chooseAttackerAndTarget(teams team)
 {
     std::string attackerShip; std::string shipToAttack; int inputAttackerShip; int inputShipToAttack;
+    teams otherTeam = (team == TeamA) ? TeamB : TeamA;
+
+    // Clear the input buffer before calling getline
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     do {
         std::cout << "Wähle eines deiner Schiffe für die Attacke (0,1,2): " << std::endl;
         if(team == TeamA)
@@ -199,6 +204,7 @@ void Spiellogik::chooseAttackerAndTarget(teams team)
         {
             printTeams(TeamB);
         }
+
         std::getline(std::cin, attackerShip); std::cout << std::endl;
         try {
             inputAttackerShip = std::stoi(attackerShip);
@@ -209,7 +215,7 @@ void Spiellogik::chooseAttackerAndTarget(teams team)
             std::cout << "Zahl außerhalb des gültigen Bereichs. Bitte 0, 1 oder 2 eingeben." << std::endl;
             inputAttackerShip = -1; // Reset input
         }
-    }while(!checkChosenShipInput(inputAttackerShip));
+    }while(!checkChosenShipInput(inputAttackerShip, team));
 
     do {
         std::cout << "Wähle eine gegnerisches Schiff um es anzugreifen (0,1,2): " << std::endl;
@@ -231,17 +237,22 @@ void Spiellogik::chooseAttackerAndTarget(teams team)
             std::cout << "Zahl außerhalb des gültigen Bereichs. Bitte 0, 1 oder 2 eingeben." << std::endl;
             inputShipToAttack = -1; // Reset input
         }
-    } while(!checkChosenShipInput(inputShipToAttack));
+    } while(!checkChosenShipInput(inputShipToAttack, otherTeam));
 
     currentShipsForCombat={inputAttackerShip,inputShipToAttack};
     currentAttacker = team;
 }
 
-int Spiellogik::checkChosenShipInput(int input)
+int Spiellogik::checkChosenShipInput(int input, teams team)
 {
-    if(input < 0 || input > 2)
+    if(team == TeamA && input >= currentShipAmountTeamA || input < 0)
     {
-        std::cout << "Auswahl muss 0,1 oder 2 sein!" << std::endl;
+        std::cout << "Auswahl muss zwischen 0 und " << currentShipAmountTeamA << " liegen!"<< std::endl;
+        return 0;
+    }
+    if(team == TeamB && input >= currentShipAmountTeamB || input < 0)
+    {
+        std::cout << "Auswahl muss zwischen 0 und " << currentShipAmountTeamB << " liegen!"<< std::endl;
         return 0;
     }
     return 1;
@@ -389,8 +400,14 @@ void Spiellogik::printTeams(teams team)
         std::cout << "Team A: " << std::endl;
         for(const std::string& shipName : TeamA_names)
         {
-            std::cout << counterA << ": " << shipName << " / ";
-            ++counterA;
+            if (shipName != "null")
+            {
+                std::cout << counterA << ": " << shipName << " / ";
+                ++counterA;
+            } else
+            {
+                std::cout << counterA << ": Zerstoertes Schiff / ";
+            }
         }
         std::cout << std::endl;
     }
@@ -400,8 +417,14 @@ void Spiellogik::printTeams(teams team)
         std::cout << "Team B: " << std::endl;
         for(const std::string& shipName : TeamB_names)
         {
-            std::cout << counterB << ": " << shipName << " / ";
-            ++counterB;
+            if (shipName != "null")
+            {
+                std::cout << counterB << ": " << shipName << " / ";
+                ++counterB;
+            } else
+            {
+                std::cout << counterB << ": Zerstoertes Schiff / ";
+            }
         }
         std::cout << std::endl;
     }
