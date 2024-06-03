@@ -258,16 +258,6 @@ int Spiellogik::checkChosenShipInput(int input, teams team)
     return 1;
 }
 
-angriffsErfolg Spiellogik::determineAttackSuccess(int shipSize)
-{
-    int randomNumber = rand()%10 + 1;
-    if (randomNumber < shipSize) {
-        return SUCCESS;
-    } else {
-        return FAILURE;
-    }
-}
-
 void Spiellogik::executeAttack()
 {
     // first in array: attacker ship; second: ship to be attacked
@@ -303,21 +293,19 @@ void Spiellogik::removeDestroyedShip(int indexShipToDestroy)
     if(currentAttacker == TeamA)
     {
         --currentShipAmountTeamB;
-        shipsTeamB[indexShipToDestroy] = nullptr;
+        delete shipsTeamB[indexShipToDestroy];
 
-        for (size_t i = indexShipToDestroy + 1; i < shipsTeamB.size(); ++i) {
+        for (int i = indexShipToDestroy + 1; i < currentShipAmountTeamB; ++i) {
             shipsTeamB[i - 1] = shipsTeamB[i];
-            shipsTeamB[i] = nullptr; //Set the last element to nullptr
         }
     }
     if(currentAttacker == TeamB)
     {
         --currentShipAmountTeamA;
-        shipsTeamA[indexShipToDestroy] = nullptr;
+        delete shipsTeamA[indexShipToDestroy];
 
-        for (size_t i = indexShipToDestroy + 1; i < shipsTeamA.size(); ++i) {
+        for (int i = indexShipToDestroy + 1; i < currentShipAmountTeamA; ++i) {
             shipsTeamA[indexShipToDestroy - 1] = shipsTeamA[i];
-            shipsTeamA[indexShipToDestroy] = nullptr;
         }
     }
 }
@@ -352,83 +340,77 @@ void Spiellogik::printChosenShips()
 
 void Spiellogik::printTeams(teams team)
 {
-    //get ship types for printing
-    int amountA=0; int amountB=0;
-    std::array<std::string,MAX_TEAM_SIZE> TeamA_names;
-    std::array<std::string,MAX_TEAM_SIZE> TeamB_names;
-    for(Schiff* ship : shipsTeamA)
-    {
-        switch(ship->type_)
-        {
-        case 0:
-            TeamA_names[amountA]="JAEGER";
-            break;
-        case 1:
-            TeamA_names[amountA]="ZERSTOERER";
-            break;
-        case 2:
-            TeamA_names[amountA]="KREUZER";
-            break;
-        default:
-            std::cout << "Typ existiert nicht!";
-            break;
-        }
-        ++amountA;
-    }
-    for(Schiff* ship : shipsTeamB)
-    {
-        switch(ship->type_)
-        {
-        case 0:
-            TeamB_names[amountB]="JAEGER";
-            break;
-        case 1:
-            TeamB_names[amountB]="ZERSTOERER";
-            break;
-        case 2:
-            TeamB_names[amountB]="KREUZER";
-            break;
-        default:
-            std::cout << "Typ existiert nicht!";
-        }
-        ++amountB;
-    }
-    if(team == TeamA)
-    {
-        //print team info
-        int counterA = 0;
-        std::cout << "Team A: " << std::endl;
-        for(const std::string& shipName : TeamA_names)
-        {
-            if (shipName != "null")
-            {
-                std::cout << counterA << ": " << shipName << " / ";
-                ++counterA;
-            } else
-            {
-                std::cout << counterA << ": Zerstoertes Schiff / ";
+    int amountA = 0;
+    int amountB = 0;
+    std::array<std::string, MAX_TEAM_SIZE> TeamA_names;
+    std::array<std::string, MAX_TEAM_SIZE> TeamB_names;
+
+    // Populate ship names arrays for Team A and Team B
+    for (size_t i = 0; i < MAX_TEAM_SIZE; ++i) {
+        if (shipsTeamA[i]) {
+            switch (shipsTeamA[i]->type_) {
+                case 0:
+                    TeamA_names[amountA] = "JAEGER";
+                    break;
+                case 1:
+                    TeamA_names[amountA] = "ZERSTOERER";
+                    break;
+                case 2:
+                    TeamA_names[amountA] = "KREUZER";
+                    break;
+                default:
+                    std::cout << "Invalid ship type for Team A!" << std::endl;
+                    break;
             }
+            ++amountA;
         }
-        std::cout << std::endl;
-    }
-    if(team == TeamB)
-    {
-        int counterB = 0;
-        std::cout << "Team B: " << std::endl;
-        for(const std::string& shipName : TeamB_names)
-        {
-            if (shipName != "null")
-            {
-                std::cout << counterB << ": " << shipName << " / ";
-                ++counterB;
-            } else
-            {
-                std::cout << counterB << ": Zerstoertes Schiff / ";
+        if (shipsTeamB[i]) {
+            switch (shipsTeamB[i]->type_) {
+                case 0:
+                    TeamB_names[amountB] = "JAEGER";
+                    break;
+                case 1:
+                    TeamB_names[amountB] = "ZERSTOERER";
+                    break;
+                case 2:
+                    TeamB_names[amountB] = "KREUZER";
+                    break;
+                default:
+                    std::cout << "Invalid ship type for Team B!" << std::endl;
+                    break;
             }
+            ++amountB;
         }
-        std::cout << std::endl;
     }
 
+    // Print ship information for the specified team
+    if (team == TeamA) {
+        int counterA = 0;
+        std::cout << "Team A: " << std::endl;
+        for (size_t i = 0; i < MAX_TEAM_SIZE; ++i) {
+            if (!shipsTeamA[i]) {
+                std::cout << counterA << ": Zerstoertes Schiff / ";
+            } else {
+                std::cout << counterA << ": " << TeamA_names[i] << " / ";
+                ++counterA;
+            }
+        }
+        std::cout << std::endl;
+    } else if (team == TeamB) {
+        int counterB = 0;
+        std::cout << "Team B: " << std::endl;
+        for (size_t i = 0; i < MAX_TEAM_SIZE; ++i) {
+            if (!shipsTeamB[i]) {
+                std::cout << counterB << ": Zerstoertes Schiff / ";
+            } else {
+                std::cout << counterB << ": " << TeamB_names[i] << " / ";
+                ++counterB;
+            }
+        }
+        std::cout << std::endl;
+    } else {
+        std::cout << "Invalid team!" << std::endl;
+    }
 }
 
 

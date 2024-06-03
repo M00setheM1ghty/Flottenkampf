@@ -13,7 +13,7 @@ void Jaeger::attack(Schiff* target)
     {
         damageMultiplicator = checkShipAbility(randomNumber);
         target->huelle_ -= (damageMultiplicator * schaden_);
-        std::cout << "Jaeger trifft und macht" << damageMultiplicator*schaden_ << "schaden!" << std::endl;
+        std::cout << "Jaeger trifft und macht " << damageMultiplicator*schaden_ << " schaden!" << std::endl;
     } else {
         std::cout << "Jaeger verfehlt Ziel!" << std::endl;
     }

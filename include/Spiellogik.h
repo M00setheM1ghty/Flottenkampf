@@ -10,7 +10,7 @@
 #include "Jaeger.h"
 #include "Kreuzer.h"
 #include "Zerstoerer.h"
-
+#include <cassert>
 
 class Spiellogik
 {

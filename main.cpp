@@ -9,7 +9,7 @@
 #include "Schiff.h"
 #include "Spiellogik.h"
 
-#define USE_DOCTEST_MAIN 1
+#define USE_DOCTEST_MAIN 0
 
 #if USE_DOCTEST_MAIN
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN

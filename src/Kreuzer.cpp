@@ -8,12 +8,15 @@ Kreuzer::~Kreuzer()
 void Kreuzer::attack(Schiff* target)
 {
     int randomNumber = rand() % 10 + 1;
-    if (determineAttackSuccess(randomNumber) == SUCCESS)
+    while (determineAttackSuccess(randomNumber) == SUCCESS && checkShipAbility(randomNumber) == 1 && target->huelle_ > 0)
     {
-        if(checkShipAbility(randomNumber)==1 && target != nullptr) attack(target);
         target->huelle_ -= schaden_;
-        std::cout << "Kreuzer trifft und macht" << schaden_ << "schaden!" << std::endl;
-    } else {
+        std::cout << "Kreuzer trifft und macht " << schaden_ << " Schaden!" << std::endl;
+        randomNumber = rand() % 10 + 1; // Generate a new random number for the next attack attempt
+    }
+
+    if (determineAttackSuccess(randomNumber) == FAILURE)
+    {
         std::cout << "Kreuzer verfehlt Ziel!" << std::endl;
     }
 }
