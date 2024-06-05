@@ -25,11 +25,14 @@ class Team
         schifftyp findShipType(const std::string& input);
         void createShipForTeam(schifftyp shiptype);
         void addShipsToTeams();
+        // fighting functions
+
         // print functions
         void printTeam() const;
         void displayTeam() const;
         //getter setter
         const std::vector<Schiff*>& getShipsOfTeam() const;
+        Schiff* getShipByIndex(int index) const;
 
 
     public:

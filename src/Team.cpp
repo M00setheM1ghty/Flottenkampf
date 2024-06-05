@@ -9,7 +9,10 @@ Team::Team(std::string teamname)
 
 Team::~Team()
 {
-    //dtor
+    for(Schiff* ship : shipsOfTeam_)
+    {
+        delete ship;
+    }
 }
 
 //////////// Team Setup Functions
@@ -88,15 +91,18 @@ void Team::displayTeam() const {
         }
     }
 
-void Team::printTeam() const
-{
-    std::cout << teamName << std::endl;
+// fighting functions //
 
-}
+
 
 // getter setter //
 
 const std::vector<Schiff*>& Team::getShipsOfTeam() const
 {
     return shipsOfTeam_;
+}
+
+Schiff* Team::getShipByIndex(int index) const
+{
+    return shipsOfTeam_.at(index);
 }

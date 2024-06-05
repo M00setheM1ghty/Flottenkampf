@@ -22,14 +22,16 @@ class Spiellogik
         ~Spiellogik();
         void createTeams();
         void displayTeams() const;
-
+        void executeRound();
 
     private:
+
 
     public:
-        std::vector<std::unique_ptr<Team>> teams;
+
     private:
-        std::vector<Team*> currentTeams;
+        std::vector<std::unique_ptr<Team>> teams;
+        int currentAttackerIndex = 0;
 
     protected:
 

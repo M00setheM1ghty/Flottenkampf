@@ -20,7 +20,6 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
-
     Spiellogik spiel;
     spiel.createTeams();
     spiel.displayTeams();
