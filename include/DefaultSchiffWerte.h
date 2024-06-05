@@ -37,5 +37,6 @@ enum angriffsErfolg
 
 
 static const int MAX_TEAM_SIZE = 3;
+static const int MAX_TEAM_AMOUNT = 2;
 #endif // DEFAULTSCHIFFWERTE_H
 

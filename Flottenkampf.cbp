@@ -48,6 +48,7 @@
 		<Unit filename="src/Schiff.cpp" />
 		<Unit filename="src/Spiellogik.cpp" />
 		<Unit filename="src/Zerstoerer.cpp" />
+		<Unit filename="src/test_spiellogik.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

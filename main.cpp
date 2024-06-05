@@ -8,6 +8,7 @@
 #include "Jaeger.h"
 #include "Schiff.h"
 #include "Spiellogik.h"
+#include "Team.h"
 
 #define USE_DOCTEST_MAIN 0
 
@@ -19,12 +20,10 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
-    Spiellogik spiel;
-    spiel.spielSetup();
 
-    while(!spiel.gameTerminator){
-        spiel.executeRound();
-    }
+    Spiellogik spiel;
+    spiel.createTeams();
+    spiel.displayTeams();
 }
 #endif
 
