@@ -26,7 +26,8 @@ class Team
         void createShipForTeam(schifftyp shiptype);
         void addShipsToTeams();
         // fighting functions
-
+        void checkForDestroyedShipAndRemove();
+        bool checkForGameEnd();
         // print functions
         void printTeam() const;
         void displayTeam() const;

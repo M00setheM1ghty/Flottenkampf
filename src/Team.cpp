@@ -86,13 +86,45 @@ void Team::displayTeam() const {
         std::cout << "Team name: " << teamName << std::endl;
         for(Schiff* ships : shipsOfTeam_)
         {
-            std::cout << "Schifftyp: " << ships->type_ << " Huelle: " << ships->huelle_ << " Schaden: " << ships->schaden_
-            << " Groesse: " << ships->groesse_ << " Erfahrungspunkte: " << ships->erfahrungspunkte_ << std::endl;
+            if(ships == nullptr)
+            {
+                std::cout << "/Destroyed Ship/" << std::endl;
+            } else
+            {
+                std::cout << "Schifftyp: " << ships->type_ << " Huelle: " << ships->huelle_ << " Schaden: " << ships->schaden_
+                << " Groesse: " << ships->groesse_ << " Erfahrungspunkte: " << ships->erfahrungspunkte_ << std::endl;
+            }
         }
     }
 
 // fighting functions //
+void Team::checkForDestroyedShipAndRemove()
+{
+    for(Schiff* ship : shipsOfTeam_)
+    {
+        if(ship->huelle_<=0)
+        {
+            ship = nullptr;
+        }
+    }
+}
 
+bool Team::checkForGameEnd()
+{
+    bool endOfGame = true;
+    for(Schiff* ship : shipsOfTeam_)
+    {
+        if(ship != nullptr)
+        {
+            endOfGame = false;
+        }
+    }
+    if(endOfGame)
+    {
+        std::cout << "Team " << teamName << " has no more ships and loses!" << std::endl;
+    }
+    return endOfGame;
+}
 
 
 // getter setter //

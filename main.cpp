@@ -21,8 +21,8 @@
 int main()
 {
     Spiellogik spiel;
-    spiel.createTeams();
-    spiel.displayTeams();
+    spiel.executeGame();
+    return 1234;
 }
 #endif
 
