@@ -54,11 +54,13 @@ void Spiellogik::executeAttack()
     currentAttackerIndex = targetIndex;
 }
 
-void Spiellogik::executeGame()
+void Spiellogik::executeGame(Welt& welt)
 {
     bool endOfGame = false;
     createTeams();
     displayTeams();
+    initAllTeamsPositions();
+    welt.initWorld(); welt.printWorld(teams);
 
     while(!endOfGame)
     {
@@ -75,6 +77,8 @@ void Spiellogik::executeGame()
             }
             std::cout << std::endl;
             displayTeams();
+            std::cout << std::endl;
+            welt.printWorld(teams);
             std::cout << std::endl;
         }
     }

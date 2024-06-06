@@ -15,6 +15,7 @@
 #include "DefaultSchiffWerte.h"
 #include "Welt.h"
 
+class Welt;
 
 class Spiellogik
 {
@@ -25,12 +26,11 @@ class Spiellogik
         void displayTeams() const;
         void initAllTeamsPositions();
         void executeAttack();
-        void executeGame();
+        void executeGame(Welt& welt);
 
     public:
 
     private:
-        Welt welt;
         std::vector<std::unique_ptr<Team>> teams;
         int currentAttackerIndex = 0;
 

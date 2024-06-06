@@ -21,8 +21,9 @@
 #if !USE_DOCTEST_MAIN
 int main()
 {
+    Welt welt;
     Spiellogik spiel;
-    spiel.executeGame();
+    spiel.executeGame(welt);
     return 1234;
 }
 #endif

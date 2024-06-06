@@ -25,19 +25,19 @@ void Jaeger::attack(Schiff* target)
 
 void Jaeger::specialAbilityOne()
 {
-    if(erfahrungspunkte_ > 2 && erfahrungspunkte_ < 5)
+    if(erfahrungspunkte_ > 2 && erfahrungspunkte_ < 10)
     {
-        erfahrungspunkte_+=2;
+        erfahrungspunkte_+=1;
         std::cout << "JAEGER bekommt 2 Erfahrungspunkte durch SA1!" << std::endl;
     }
 }
 
 void Jaeger::specialAbilityTwo()
 {
-    if(erfahrungspunkte_ >= 5)
+    if(erfahrungspunkte_ >= 10)
     {
-        huelle_ += 40;
-        std::cout << "JAEGER bekommt 40 Huellenpunktedurch SA2!" << std::endl;
+        huelle_ += 10;
+        std::cout << "JAEGER bekommt 10 Huellenpunktedurch SA2!" << std::endl;
     }
 }
 

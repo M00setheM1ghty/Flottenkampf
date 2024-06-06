@@ -11,6 +11,8 @@ class Welt
     public:
         Welt();
         ~Welt();
+        void initWorld();
+        void printWorld(const std::vector<std::unique_ptr<Team>>& teams) const;
     public:
 
     private:
@@ -18,6 +20,7 @@ class Welt
 
     private:
         std::vector<position> spielfeld;
+
 };
 
 #endif // WELT_H
