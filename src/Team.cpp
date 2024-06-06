@@ -100,30 +100,30 @@ void Team::displayTeam() const {
 // fighting functions //
 void Team::checkForDestroyedShipAndRemove()
 {
-    for(Schiff* ship : shipsOfTeam_)
+    for(Schiff*& ship : shipsOfTeam_)
     {
-        if(ship->huelle_<=0)
+        if(ship && ship->huelle_ <= 0)
         {
+            delete ship;
             ship = nullptr;
         }
+    }
+    for (const auto& ship : shipsOfTeam_) {
+        assert(ship == nullptr || ship->huelle_ > 0);
     }
 }
 
 bool Team::checkForGameEnd()
 {
-    bool endOfGame = true;
     for(Schiff* ship : shipsOfTeam_)
     {
         if(ship != nullptr)
         {
-            endOfGame = false;
+            return false;
         }
     }
-    if(endOfGame)
-    {
-        std::cout << "Team " << teamName << " has no more ships and loses!" << std::endl;
-    }
-    return endOfGame;
+    std::cout << "Team " << teamName << " has no more ships and loses!" << std::endl;
+    return true;
 }
 
 

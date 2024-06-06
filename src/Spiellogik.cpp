@@ -38,13 +38,16 @@ void Spiellogik::executeAttack()
 
         do {
             // Generate indices from 0-2
-            currentAttackerIndexInt = rand() % teams[currentAttackerIndex]->getShipsOfTeam().size();
-            indexToBeAttackedInt = rand() % teams[targetIndex]->getShipsOfTeam().size();
+            currentAttackerIndexInt = rand() % MAX_TEAM_SIZE;
+            indexToBeAttackedInt = rand() % MAX_TEAM_SIZE;
 
             // Get the attacker and victim ships
             attacker = teams[currentAttackerIndex]->getShipsOfTeam()[currentAttackerIndexInt];
             victim = teams[targetIndex]->getShipsOfTeam()[indexToBeAttackedInt];
         } while(attacker == nullptr || victim == nullptr);
+
+        assert(attacker != nullptr && "Attacker pointer should not be nullptr after the loop");
+        assert(victim != nullptr && "Victim pointer should not be nullptr after the loop");
 
         attacker->attack(victim);
     }
@@ -63,8 +66,13 @@ void Spiellogik::executeGame()
         {
             executeAttack();
             team->checkForDestroyedShipAndRemove();
-            endOfGame = team->checkForGameEnd();
-            if(endOfGame) return;
+            if(team->checkForGameEnd())
+            {
+                endOfGame = true;
+                break;
+            }
+            displayTeams();
         }
     }
+    assert(endOfGame && "Game should end when one team has no ships left");
 }
