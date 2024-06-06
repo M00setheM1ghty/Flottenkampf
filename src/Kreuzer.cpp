@@ -5,13 +5,13 @@ Kreuzer::~Kreuzer()
 
 }
 
-void Kreuzer::attack(Schiff* target)
+void Kreuzer::attack(Schiff* target,float damageFactorDistance)
 {
     int randomNumber = rand() % 10 + 1;
     while (determineAttackSuccess(randomNumber) == SUCCESS && checkShipAbility(randomNumber) == 1 && target->huelle_ > 0)
     {
-        target->huelle_ -= schaden_;
-        std::cout << "Kreuzer trifft und macht " << schaden_ << " Schaden!" << std::endl;
+        target->huelle_ -= (schaden_*damageFactorDistance);
+        std::cout << "Kreuzer trifft und macht " << schaden_*damageFactorDistance << " Schaden!" << std::endl;
         randomNumber = rand() % 10 + 1; // Generate a new random number for the next attack attempt
     }
 

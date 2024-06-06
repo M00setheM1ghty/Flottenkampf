@@ -30,7 +30,7 @@ void Spiellogik::displayTeams() const {
 
 void Spiellogik::executeAttack()
 {
-    int targetIndex = (currentAttackerIndex + 1) % teams.size();
+    int targetIndex = (currentAttackerIndex + 1) % MAX_TEAM_AMOUNT;
     if(teams.size() == MAX_TEAM_AMOUNT)
     {
         int currentAttackerIndexInt; int indexToBeAttackedInt;
@@ -49,7 +49,8 @@ void Spiellogik::executeAttack()
         assert(attacker != nullptr && "Attacker pointer should not be nullptr after the loop");
         assert(victim != nullptr && "Victim pointer should not be nullptr after the loop");
 
-        attacker->attack(victim);
+        float damageFactorDistance = checkDistance(attacker,victim);
+        attacker->attack(victim, damageFactorDistance);
     }
     currentAttackerIndex = targetIndex;
 }
@@ -75,6 +76,14 @@ void Spiellogik::executeGame(Welt& welt)
                 endOfGame = true;
                 break;
             }
+            // move ships
+            for(Schiff* ship : team->getShipsOfTeam())
+            {
+                if(ship != nullptr)
+                {
+                    ship->moveShip();
+                }
+            }
             std::cout << std::endl;
             displayTeams();
             std::cout << std::endl;
@@ -91,4 +100,18 @@ void Spiellogik::initAllTeamsPositions()
     {
         team->initTeamPositions();
     }
+}
+
+float Spiellogik::checkDistance(Schiff* attacker, Schiff* victim)
+{
+    int distance=0;
+    int xDifference = std::max(attacker->schiffPosition_.xCord, victim->schiffPosition_.xCord) -
+                      std::min(attacker->schiffPosition_.xCord, victim->schiffPosition_.xCord);
+
+    int yDifference = std::max(attacker->schiffPosition_.yCord, victim->schiffPosition_.yCord) -
+                      std::min(attacker->schiffPosition_.yCord, victim->schiffPosition_.yCord);
+    distance =(xDifference + yDifference);
+    float factor = (100.0f - static_cast<float>(distance)) / 100.0f;
+    assert(factor > 0.0f && factor <= 1.0f && "factor nicht im richtigen Bereich");
+    return factor;
 }

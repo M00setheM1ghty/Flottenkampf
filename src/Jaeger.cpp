@@ -6,14 +6,15 @@ Jaeger::~Jaeger()
     //dtor
 }
 
-void Jaeger::attack(Schiff* target)
+void Jaeger::attack(Schiff* target, float damageFactorDistance)
 {
     int randomNumber = rand() % 10 + 1; int damageMultiplicator = 1;
     if (determineAttackSuccess(randomNumber) == SUCCESS)
     {
         damageMultiplicator = checkShipAbility(randomNumber);
-        target->huelle_ -= (damageMultiplicator * schaden_);
+        target->huelle_ -= (damageMultiplicator * schaden_ * damageFactorDistance);
         std::cout << "Jaeger trifft und macht " << damageMultiplicator*schaden_ << " schaden!" << std::endl;
+
         erfahrungspunkte_ += (schaden_/10);
         std::cout << "Jaeger bekommt " << (schaden_/10) << " Erfahrungspunkte" << std::endl;
     } else {

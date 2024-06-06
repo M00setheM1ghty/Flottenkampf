@@ -3,6 +3,7 @@
 
 #include "DefaultSchiffWerte.h"
 #include <iostream>
+#include <cassert>
 
 class Schiff
 {
@@ -16,11 +17,12 @@ class Schiff
     public:
         Schiff(int groesse, int huelle, int schaden, schifftyp type_) : groesse_(groesse), huelle_(huelle), schaden_(schaden), type_(type_){};
         virtual ~Schiff();
-        virtual void attack(Schiff* target) = 0;
+        virtual void attack(Schiff* target,float damageFactorDistance) = 0;
         virtual angriffsErfolg determineAttackSuccess(int randomNumber) = 0;
         virtual int checkShipAbility(int randomNumber) = 0;
         virtual void specialAbilityOne() = 0;
         virtual void specialAbilityTwo() = 0;
+        void moveShip();
     protected:
 
     private:

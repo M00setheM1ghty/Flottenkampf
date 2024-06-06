@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cassert>
+#include <algorithm>
 #include "Schiff.h"
 #include "Jaeger.h"
 #include "Kreuzer.h"
@@ -22,11 +23,13 @@ class Spiellogik
     public:
         Spiellogik();
         ~Spiellogik();
+        float checkDistance(Schiff* attacker, Schiff* victim);
         void createTeams();
         void displayTeams() const;
         void initAllTeamsPositions();
         void executeAttack();
         void executeGame(Welt& welt);
+    private:
 
     public:
 

@@ -8,7 +8,7 @@ class Kreuzer : public Schiff
     public:
         Kreuzer(int groesse, int huelle, int schaden) : Schiff(groesse, huelle, schaden, KREUZER){};
         virtual ~Kreuzer();
-        void attack(Schiff* target) override;
+        void attack(Schiff* target,float damageFactorDistance) override;
         angriffsErfolg determineAttackSuccess(int randomNumber) override;
         int checkShipAbility(int randomNumber) override;
         void specialAbilityOne() override;

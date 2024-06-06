@@ -5,12 +5,12 @@ Zerstoerer::~Zerstoerer()
 
 }
 
-void Zerstoerer::attack(Schiff* target)
+void Zerstoerer::attack(Schiff* target, float damageFactorDistance)
 {
     int randomNumber = rand() % 10 + 1;
     if (determineAttackSuccess(randomNumber) == SUCCESS)
     {
-        target->huelle_ -= schaden_;
+        target->huelle_ -= (schaden_*damageFactorDistance);
         std::cout << "Zerstoerer trifft und macht" << schaden_ << "schaden!" << std::endl;
         erfahrungspunkte_ += (schaden_/10);
         std::cout << "Jaeger bekommt " << (schaden_/10) << " Erfahrungspunkte" << std::endl;
