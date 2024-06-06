@@ -18,6 +18,8 @@ class Schiff
         virtual void attack(Schiff* target) = 0;
         virtual angriffsErfolg determineAttackSuccess(int randomNumber) = 0;
         virtual int checkShipAbility(int randomNumber) = 0;
+        virtual void specialAbilityOne() = 0;
+        virtual void specialAbilityTwo() = 0;
     protected:
 
     private:

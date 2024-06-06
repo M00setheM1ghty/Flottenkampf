@@ -35,6 +35,7 @@ void Team::chooseShipsForTeams() {
             ++shipAmount;
         }
     }
+    std::cout << std::endl;
 }
 
 schifftyp Team::findShipType(const std::string& input)

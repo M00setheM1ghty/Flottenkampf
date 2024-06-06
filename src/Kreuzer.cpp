@@ -18,6 +18,29 @@ void Kreuzer::attack(Schiff* target)
     if (determineAttackSuccess(randomNumber) == FAILURE)
     {
         std::cout << "Kreuzer verfehlt Ziel!" << std::endl;
+        erfahrungspunkte_ += 2;
+        std::cout << "Kreuzer bekommt 2 Erfahrungspunkte" << std::endl;
+    }
+    specialAbilityOne();
+    specialAbilityTwo();
+}
+
+void Kreuzer::specialAbilityOne()
+{
+    if(erfahrungspunkte_ >= 3 && erfahrungspunkte_ < 6)
+    {
+        groesse_ = 7;
+        std::cout << "KREUZER verändert Groesse zu 7 durch SA1!" << std::endl;
+    }
+}
+
+void Kreuzer::specialAbilityTwo()
+{
+    if(erfahrungspunkte_ >=6)
+    {
+        schaden_ +=5 ;
+        huelle_-=20;
+        std::cout << "KREUZER erhöht Schaden um 5, aber verliert 20 Huellenpunkte durch SA2!" << std::endl;
     }
 }
 

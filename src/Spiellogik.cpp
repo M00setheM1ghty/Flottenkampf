@@ -64,14 +64,18 @@ void Spiellogik::executeGame()
     {
         for(const auto& team : teams)
         {
+            std::cout << std::endl;
             executeAttack();
+            std::cout << std::endl;
             team->checkForDestroyedShipAndRemove();
             if(team->checkForGameEnd())
             {
                 endOfGame = true;
                 break;
             }
+            std::cout << std::endl;
             displayTeams();
+            std::cout << std::endl;
         }
     }
     assert(endOfGame && "Game should end when one team has no ships left");

@@ -11,6 +11,8 @@ class Jaeger : public Schiff
         void attack(Schiff* target) override;
         angriffsErfolg determineAttackSuccess(int randomNumber) override;
         int checkShipAbility(int randomNumber) override;
+        void specialAbilityOne() override;
+        void specialAbilityTwo() override;
 
     protected:
 
