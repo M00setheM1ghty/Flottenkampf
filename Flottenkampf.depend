@@ -110,17 +110,17 @@
 	"Team.h"
 	"doctest.h"
 
-1717599449 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\defaultschiffwerte.h
+1717669296 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\defaultschiffwerte.h
 	<string>
 
 1717663106 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\jaeger.h
 	"Schiff.h"
 
-1717663112 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\schiff.h
+1717668459 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\schiff.h
 	"DefaultSchiffWerte.h"
 	<iostream>
 
-1717619853 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\spiellogik.h
+1717671802 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\spiellogik.h
 	<array>
 	<string>
 	<iostream>
@@ -133,6 +133,7 @@
 	"Zerstoerer.h"
 	"Team.h"
 	"DefaultSchiffWerte.h"
+	"Welt.h"
 
 1717663771 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\kreuzer.h
 	"Schiff.h"
@@ -193,24 +194,24 @@
 1717665493 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\jaeger.cpp
 	"Jaeger.h"
 
-1717665036 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\kreuzer.cpp
+1717665707 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\kreuzer.cpp
 	"Kreuzer.h"
 
 1717354746 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\schiff.cpp
 	"Schiff.h"
 
-1717665285 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\spiellogik.cpp
+1717671725 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\spiellogik.cpp
 	"Spiellogik.h"
 
-1717665136 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\zerstoerer.cpp
+1717665703 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\zerstoerer.cpp
 	"Zerstoerer.h"
 
 1717402346 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\test_spiellogik.cpp
 
-1717661099 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\team.cpp
+1717671064 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\team.cpp
 	"Team.h"
 
-1717618011 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\team.h
+1717671073 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\team.h
 	<array>
 	<string>
 	<iostream>
@@ -224,4 +225,13 @@
 	"Kreuzer.h"
 	"Zerstoerer.h"
 	"DefaultSchiffWerte.h"
+
+1717670973 source:c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\src\welt.cpp
+	"Welt.h"
+
+1717671728 c:\users\thomas\onedrive - ipcb e.u\laptop\c++ files\flottenkampf\flottenkampf\include\welt.h
+	<vector>
+	"Schiff.h"
+	"DefaultSchiffWerte.h"
+	"Spiellogik.h"
 

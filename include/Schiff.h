@@ -12,6 +12,7 @@ class Schiff
         int schaden_;
         int erfahrungspunkte_ = 0;
         schifftyp type_;
+        position schiffPosition_;
     public:
         Schiff(int groesse, int huelle, int schaden, schifftyp type_) : groesse_(groesse), huelle_(huelle), schaden_(schaden), type_(type_){};
         virtual ~Schiff();

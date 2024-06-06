@@ -80,3 +80,11 @@ void Spiellogik::executeGame()
     }
     assert(endOfGame && "Game should end when one team has no ships left");
 }
+
+void Spiellogik::initAllTeamsPositions()
+{
+    for(const auto& team : teams)
+    {
+        team->initTeamPositions();
+    }
+}

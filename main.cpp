@@ -9,6 +9,7 @@
 #include "Schiff.h"
 #include "Spiellogik.h"
 #include "Team.h"
+#include "Welt.h"
 
 #define USE_DOCTEST_MAIN 0
 

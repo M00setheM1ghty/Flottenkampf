@@ -127,7 +127,6 @@ bool Team::checkForGameEnd()
     return true;
 }
 
-
 // getter setter //
 
 const std::vector<Schiff*>& Team::getShipsOfTeam() const
@@ -138,4 +137,18 @@ const std::vector<Schiff*>& Team::getShipsOfTeam() const
 Schiff* Team::getShipByIndex(int index) const
 {
     return shipsOfTeam_.at(index);
+}
+
+// position functions
+
+void Team::initTeamPositions()
+{
+    int xcord; int ycord;
+    for(Schiff* ship : shipsOfTeam_)
+    {
+        xcord = rand()%4; ycord = rand()%4;
+        ship->schiffPosition_.xCord = xcord;
+        ship->schiffPosition_.yCord = ycord;
+    }
+    ++xcord;++ycord;
 }

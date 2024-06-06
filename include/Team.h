@@ -20,6 +20,8 @@ class Team
     public:
         Team(std::string teamname);
         ~Team();
+        // position functions
+        void initTeamPositions();
         // setup team
         void chooseShipsForTeams();
         schifftyp findShipType(const std::string& input);
